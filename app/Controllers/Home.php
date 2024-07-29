@@ -1,15 +1,14 @@
 <?php
 //Handles the logic of Your app
 
-class Home extends Controllers
+class Home 
 {
 
+    use Controllers;
     public function index($a = '', $b = '', $c = '')
     {
-        show("From the Home function");
-        show($a);
-        show($b);
-        show($c);
+    
+        
         $this->views('home');
         // $user = new User();
         // $model->retrieve();
