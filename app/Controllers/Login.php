@@ -5,7 +5,7 @@ class Login
 {
     use Controllers;
 
-    public function Index()
+    public function index()
     {
 
         $this->views('login');

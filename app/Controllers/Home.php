@@ -33,11 +33,11 @@ class Home
         // show($result);
     }
 
-    public function edit($a = 1, $b = 2)
-    {
+    // public function edit($a = 1, $b = 2)
+    // {
 
-        show("From the edit fucntion");
-        $this->views("Home");
-    }
+    //     show("From the edit fucntion");
+    //     $this->views("Home");
+    // }
 }
 

@@ -1,5 +1,7 @@
 <?php
 //this brings all our web app functionalities together making it work
+//handles our url requests
+
 
 // show($_SERVER['REQUEST_URI']) . PHP_EOL;
 // $url = $_GET['url'] ? 'Home' : (!$_GET['url'] ? 'Home' : 'Not working');

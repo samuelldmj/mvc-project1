@@ -166,16 +166,16 @@
 
 
     <main class="form-signin w-100 m-auto">
-        <form>
-            <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <form method="POST">
+            <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Password</label>
             </div>
 
@@ -186,7 +186,10 @@
                 </label>
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-            <a href="<?= ROOT ?>" class="text-center d-block">Home</a>
+            <div class="text-center d-flex justify-content-center">
+                <a href="<?= ROOT ?>" class="me-2">home</a>
+                <a href="<?= ROOT ?>/signup">signup</a>
+            </div>
             <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
         </form>
     </main>
