@@ -8,16 +8,22 @@ class SignUp
     public function index()
     {
 
-        $data = [];
+
         // show($_POST);
-        $user = new User;
-        if ($user->validate($_POST)) {
+        $data = [];
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            $user->insert($_POST);
-            redirect('home');
+            $user = new User;
+            if ($user->validate($_POST)) {
+
+                $user->insert($_POST);
+                redirect('login');
+            }
+
+            //error will be available on the signup page
+            $data['errors'] = $user->errors;
         }
-
-        $data['errors'] = $user->errors;
+//data helps us pass data into the signup page here to be viewed
         $this->views('signup', $data);
     }
 }

@@ -7,9 +7,11 @@ class Home
     use Controllers;
     public function index($a = '', $b = '', $c = '')
     {
-    
-        
-        $this->views('home');
+
+
+
+        $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
+        $this->views('home', $data);
         // $user = new User();
         // $model->retrieve();
         // $arr['id'] = 1;

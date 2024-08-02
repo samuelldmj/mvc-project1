@@ -5,6 +5,7 @@ trait Controllers
 
     public function views($name, $data = [])
     {
+        //data will be extracted to or on the page that hold $data parameter.
         if (!empty($data)) {
             extract($data);
         }
