@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Signin</title>
+    <title><?= $data['title'] ?></title>
 
     <link href="<?= ROOT ?>/assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -127,9 +127,10 @@
             </div>
             <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
             <div class="text-center d-flex justify-content-center">
-                <a href="<?= ROOT ?>" class="me-2">home</a>
-                <a href="<?= ROOT ?>/signup">signup</a>
+                <a href="<?= ROOT ?>" class="me-2"> <- home</a>
+                        <a href="<?= ROOT ?>/signup">Sign Up</a>
             </div>
+            <a href="<?= ROOT ?>/forgotPassword" class="text-black text-decoration-none">forgot password?</a>
             <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
         </form>
     </main>

@@ -23,6 +23,8 @@ class SignUp
             //error will be available on the signup page
             $data['errors'] = $user->errors;
         }
+
+        $data['title'] = 'SignUp';
 //data helps us pass data into the signup page here to be viewed
         $this->views('signup', $data);
     }

@@ -1,7 +1,7 @@
 <?php
 //Handles the logic of Your app
 
-class Login
+class ForgotPassword
 {
     use Controllers;
 
@@ -23,7 +23,7 @@ class Login
             $user->errors['email'] = "Wrong Email or Password";
             $data['errors'] = $user->errors;
         }
-        $data['title'] = 'LogIn';
-        $this->views('login', $data);
+        $data['title'] = 'Forget Password';
+        $this->views("forgotPassword", $data);
     }
 }

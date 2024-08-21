@@ -2,13 +2,13 @@
 <html lang="en" data-bs-theme="auto">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title><?= $data['title'] ?></title>
-
 
     <link href="<?= ROOT ?>/assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -96,9 +96,10 @@
     <link href="<?= ROOT ?>/assets/css/sign-in.css" rel="stylesheet">
 </head>
 
-<body class="mt-5 py-4 bg-body-tertiary">
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
 
-    <main class=" container form-signin w-100 m-auto">
+
+    <main class="form-signin w-100 m-auto">
         <form method="post">
 
             <?php if (!empty($errors)) : ?>
@@ -107,33 +108,24 @@
                 </div>
             <?php endif; ?>
 
-            <h1 class="h3 mb-3 fw-normal">Create Account</h1>
+            <h1 class="h3 mb-3 fw-normal">Password Recovery</h1>
 
             <div class="form-floating">
-                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="new password">
+                <label for="floatingInput">New Password</label>
             </div>
             <div class="form-floating">
-                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Confirm Password">
+                <label for="floatingPassword">Confirm Password</label>
             </div>
-
-            <div class="form-check text-start my-3">
-                <input name="terms" class="form-check-input" type="checkbox" value="1" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Accept terms and conditions
-                </label>
-            </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Create</button>
-            <div class="text-center d-flex justify-content-center">
-                <a href="<?= ROOT ?>" class="me-2">Home</a>
-                <a href="<?= ROOT ?>/login">Login</a>
-            </div>
-            <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
+            <button class="btn btn-primary w-100 py-2" type="submit">Change Password</button>
+            <!-- <div class="text-center d-flex justify-content-center">
+                <a href="<?= ROOT ?>" class="me-2"> <- home</a>
+                        <a href="<?= ROOT ?>/signup">Sign Up</a>
+            </div> -->
+            <p class="mt-2 mb-3 text-body-secondary">&copy; 2017–2024</p>
         </form>
     </main>
-
-
 </body>
 
 </html>

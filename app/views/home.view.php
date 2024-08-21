@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Maravel</title>
+    <title> <?= $data['title'] ?></title>
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -107,8 +107,12 @@
                 <h3 class="float-md-start mb-0">Maravel</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
                     <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="<?= ROOT ?>">Home</a>
-                    <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/login">login</a>
-                    <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/logout">Logout</a>
+                    <?php if (empty($_SESSION['USER'])): ?>
+                        <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/login">login</a>
+                    <?php else: ?>
+                        <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/logout">Logout</a>
+                    <?php endif; ?>
+
                 </nav>
             </div>
         </header>

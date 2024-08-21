@@ -10,7 +10,9 @@ class Home
 
 
 
-        $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
+        $data['username'] = empty($_SESSION['USER']) ? 'Friend' : $_SESSION['USER']->email;
+        $data['title'] = 'Maravel - Home';
+        
         $this->views('home', $data);
         // $user = new User();
         // $model->retrieve();
@@ -35,11 +37,6 @@ class Home
         // show($result);
     }
 
-    // public function edit($a = 1, $b = 2)
-    // {
-
-    //     show("From the edit fucntion");
-    //     $this->views("Home");
-    // }
+   
 }
 

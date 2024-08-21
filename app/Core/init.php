@@ -10,5 +10,5 @@ require   "config.php";
 require  "functions.php";
 require "Database.php";
 require  "Model.php";
-require "Controller.php";
+require "Controllers.php";
 require  "App.php";
