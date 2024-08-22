@@ -15,10 +15,23 @@ class SignUp
 
             $user = new User;
             if ($user->validate($_POST)) {
+                // Hash the password before saving
+                $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-                $user->insert($_POST);
+                // Prepare the data to be inserted
+                $data = [
+                    'email' => $_POST['email'],
+                    'password' => $hashedPassword,
+                ];
+
+                // Insert the data into the database
+                $user->insert($data);
+
                 redirect('login');
             }
+
+            
+            
 
             //error will be available on the signup page
             $data['errors'] = $user->errors;
