@@ -53,7 +53,3 @@ class Login
         $this->views('login', $data);
     }
 }
-
-
-// $user->errors['email'] = "Wrong Email or Password";
-// $data['errors'] = $user->errors;

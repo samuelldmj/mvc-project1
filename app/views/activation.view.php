@@ -108,24 +108,17 @@
                 </div>
             <?php endif; ?>
 
-            <h1 class="h3 mb-3 fw-normal">Password Recovery</h1>
+            <h1 class="h3 mb-3 fw-normal">Activate Your Account</h1>
 
             <div class="form-floating">
-                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="new password">
-                <label for="floatingInput">New Password</label>
+                <input name="active" type="text" class="form-control" id="floatingInput" placeholder="Enter your activation code">
+                <label for="floatingInput">Activation code</label>
             </div>
-            <div class="form-floating">
-                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Confirm Password">
-                <label for="floatingPassword">Confirm Password</label>
-            </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Change Password</button>
-            <!-- <div class="text-center d-flex justify-content-center">
-                <a href="<?= ROOT ?>" class="me-2"> <- home</a>
-                        <a href="<?= ROOT ?>/signup">Sign Up</a>
-            </div> -->
-            <p class="mt-2 mb-3 text-body-secondary">&copy; 2017–2024</p>
+            <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Activate</button>
+            <p class="mt-2 mb-3 text-body-secondary">Kindly check your e-mail, a code has been sent.</p>
         </form>
     </main>
+
 </body>
 
 </html>

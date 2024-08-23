@@ -110,6 +110,11 @@
             <h1 class="h3 mb-3 fw-normal">Create Account</h1>
 
             <div class="form-floating">
+                <input name="names" type="names" class="form-control" id="floatingInput" placeholder="Christiano Ronaldo">
+                <label for="floatingInput">Full name</label>
+            </div>
+
+            <div class="form-floating">
                 <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput">Email address</label>
             </div>

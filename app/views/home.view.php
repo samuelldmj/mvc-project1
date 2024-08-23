@@ -106,8 +106,9 @@
             <div>
                 <h3 class="float-md-start mb-0">Maravel</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
-                    <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="<?= ROOT ?>">Home</a>
+                    <!-- <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="<?= ROOT ?>">Home</a> -->
                     <?php if (empty($_SESSION['USER'])): ?>
+                        <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/signup">Register</a>
                         <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/login">login</a>
                     <?php else: ?>
                         <a class="nav-link fw-bold py-1 px-0" href="<?= ROOT ?>/logout">Logout</a>
