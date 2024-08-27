@@ -1,5 +1,4 @@
 <?php
-// Handles the logic of Your app
 
 class SignUp
 {
@@ -20,38 +19,27 @@ class SignUp
             }
 
             // Validate user data
-            if (
-                empty($user->errors) && $user->validate($_POST)
-            ) {
+            if (empty($user->errors) && $user->validate($_POST)) {
                 // Hash the password before saving
                 $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
                 $token = bin2hex(random_bytes(16)); // Generate a unique token
 
-                // Prepare the data to be inserted
-                $data = [
+                // Store the data in the session instead of the database
+                $_SESSION['signup_data'] = [
                     'email' => $_POST['email'],
                     'names' => $_POST['names'],
                     'token' => $token,
                     'active' => 0, // Set active status to 0 (inactive)
                     'password' => $hashedPassword,
                 ];
-
-                // Insert the data into the database
-                $user->insert($data);
+                // Redirect to activation page
+                header("Location: " . ROOT . "/activation");
 
                 // Send activation email
                 if (!$user->sendEmail($_POST['email'], $token)) {
                     $data['errors']['email'] = "Failed to send activation email.";
                 }
 
-                // Store the email and password in the session for redirection
-                $_SESSION['signup_data'] = [
-                    'email' => $_POST['email'],
-                    'password' => $_POST['password']
-                ];
-
-                // Redirect to activation page
-                redirect('activation');
             } else {
                 // Collect errors if any
                 $data['errors'] = $user->errors;
@@ -59,7 +47,7 @@ class SignUp
         }
 
         $data['title'] = 'Register';
-        // Data helps us pass data into the signup page here to be viewed
+        // Pass the data to the signup view
         $this->views('signup', $data);
     }
 }
