@@ -22,7 +22,7 @@ class SignUp
             if (empty($user->errors) && $user->validate($_POST)) {
                 // Hash the password before saving
                 $hashedPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $token = bin2hex(random_bytes(16)); // Generate a unique token
+                $token = bin2hex(random_bytes(7)); // Generate a unique token
 
                 // Store the data in the session instead of the database
                 $_SESSION['signup_data'] = [
