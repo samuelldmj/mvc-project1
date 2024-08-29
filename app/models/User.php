@@ -1,8 +1,10 @@
 <?php
 
-/**
- * User class
- */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../../vendor/autoload.php';
+
 class User
 {
     use Model;
@@ -13,7 +15,8 @@ class User
         'names',
         'email',
         'password',
-        'token',
+        'activation_token',
+        'remember_me_token',
         'active'
     ];
 
@@ -21,7 +24,6 @@ class User
     {
         $this->errors = [];
 
-        // Validation rules
         if (empty($data['email'])) {
             $this->errors['email'] = "Email is required";
         } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
@@ -36,53 +38,67 @@ class User
             $this->errors['terms'] = "Please accept the terms and conditions";
         }
 
-        if (empty($this->errors)) {
-            return true;
-        }
-
-        return false;
+        return empty($this->errors);
     }
 
-    // Method to check if an email exists
     public function emailExists($email)
     {
-        $result = $this->where(['email' => $email]);
-
-        // Check if any result was returned
-        return !empty($result);
+        return !empty($this->where(['email' => $email]));
     }
 
     public function sendEmail($email, $token)
     {
-        // Email subject
-        $subject = "Account Activation Code";
+        $mail = new PHPMailer(true);
 
-        // Email body
-        $message = "
-        <html>
-        <head>
-            <title>Account Activation</title>
-        </head>
-        <body>
-            <p>Dear User,</p>
-            <p>Thank you for signing up. Here are your details:</p>
-            <ul>
-                <li><strong>Token:</strong> $token</li>
-            </ul>
-            <p>Please use the following link to activate your account:</p>
-            <p><a href='http://yourdomain.com/activation?token=$token'>Activate Your Account</a></p>
-            <p>Thank you!</p>
-            <p>Best regards,<br>Your Company</p>
-        </body>
-        </html>
-        ";
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'inthebush87@gmail.com';
+            $mail->Password = 'yefdnfokidadhvkh';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
 
-        // Email headers
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "From: no-reply@yourdomain.com" . "\r\n";
+            $mail->setFrom('inthebush87@gmail.com', 'Maravel');
+            $mail->addAddress($email);
 
-        // Send email
-        return mail($email, $subject, $message, $headers);
+            $mail->isHTML(true);
+            $mail->Subject = 'Account Activation Code';
+            $mail->Body = "
+                <html>
+                <head><title>Account Activation</title></head>
+                <body>
+                    <p>Dear User,</p>
+                    <p>Thank you for signing up. Here are your details:</p>
+                    <ul><li><strong>Token:</strong> $token</li></ul>
+                    <p>Please use the following link to activate your account:</p>
+                    <p><a href='http://localhost/mvc-project1/public/activation?token=$token'>Activate Your Account</a></p>
+                    <p>Thank you!</p>
+                    <p>Best regards,<br>Maravel</p>
+                </body>
+                </html>
+            ";
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            return false;
+        }
+    }
+
+    public function updateToken($email, $token, $tokenType = 'activation_token')
+    {
+        $this->update(['email' => $email], [$tokenType => $token]);
+    }
+
+    public function updatePassword($email, $password)
+    {
+        $this->update(['email' => $email], ['password' => $password]);
+    }
+
+    public function clearToken($email, $tokenType = 'activation_token')
+    {
+        $this->update(['email' => $email], [$tokenType => null]);
     }
 }
