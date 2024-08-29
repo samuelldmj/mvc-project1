@@ -14,7 +14,7 @@ trait Model
     {
         $query = "SELECT * FROM $this->table";
         $result = $this->query($query);
-        show($result);
+        return $result;
     }
 
     public function update($id, $data = [], $columnName = 'id')
