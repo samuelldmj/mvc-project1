@@ -5,7 +5,6 @@
 // $conn = new PDO($string, DBUSER, DBPASS);
 
 trait Database
-
 {
     private function connect()
     {
@@ -18,6 +17,15 @@ trait Database
     {
         $conn = $this->connect();
         $stm = $conn->prepare($query);
+
+        // Ensure all data is scalar
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                // Handle array conversion for specific cases like WHERE IN
+                $data[$key] = implode(',', $value);
+            }
+        }
+
         $exec = $stm->execute($data);
         if ($exec) {
             $result = $stm->fetchAll(PDO::FETCH_OBJ);
@@ -29,11 +37,19 @@ trait Database
         return false;
     }
 
-
     public function get_row($query, $data = [])
     {
         $conn = $this->connect();
         $stm = $conn->prepare($query);
+
+        // Ensure all data is scalar
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                // Handle array conversion for specific cases like WHERE IN
+                $data[$key] = implode(',', $value);
+            }
+        }
+
         $exec = $stm->execute($data);
         if ($exec) {
             $result = $stm->fetchAll(PDO::FETCH_OBJ);
