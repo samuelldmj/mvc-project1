@@ -1,5 +1,4 @@
 <?php
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -15,6 +14,10 @@ class User
     public function validate($data)
     {
         $this->errors = [];
+
+        if (empty($data['full_name'])) {
+            $this->errors['full_name'] = "Full name is required";
+        }
 
         if (empty($data['email'])) {
             $this->errors['email'] = "Email is required";
@@ -46,8 +49,8 @@ class User
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'inthebush87@gmail.com';
-            $mail->Password = 'yefdnfokidadhvkh'; // Should use environment variables
+            $mail->Username = 'inthebush87@gmail.com'; // Replace with your email
+            $mail->Password = 'scjc fguv lsnn saki'; // Use app password from environment variable
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
@@ -65,9 +68,9 @@ class User
             $mail->send();
             return true;
         } catch (Exception $e) {
-            $this->errors['email'] = "Email could not be sent.";
+            error_log("Email could not be sent. Mailer Error: {$mail->ErrorInfo}");
+            $this->errors['email'] = "Email could not be sent: " . $mail->ErrorInfo;
             return false;
         }
     }
 }
-

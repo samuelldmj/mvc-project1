@@ -9,12 +9,12 @@ class Activation
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new User;
-            $token = htmlspecialchars($_POST['active']);
+            $activationCode = htmlspecialchars($_POST['activation_code']);
             $signupData = $_SESSION['signup_data'] ?? [];
 
-            if (!$token) {
+            if (empty($activationCode)) {
                 $data['errors'][] = "Activation code is required.";
-            } elseif ($signupData && $signupData['token'] === $token) {
+            } elseif ($signupData && $signupData['token'] === $activationCode) {
                 // Insert the user data into the database
                 $user->insert($signupData);
 
@@ -24,7 +24,7 @@ class Activation
                     $user->update($userRecord->id, ['active' => 1, 'token' => null]);
                 }
 
-                // Clear the signup data from session
+                // Clear the signup data from the session
                 unset($_SESSION['signup_data']);
 
                 // Redirect to login page

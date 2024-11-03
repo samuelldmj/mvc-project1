@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 // define('ROOT', "http//:localhost/mvc/public");
 
 //alternative that makes it easy production

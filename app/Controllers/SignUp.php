@@ -10,7 +10,9 @@ class SignUp
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new User;
 
-            $email = htmlspecialchars($_POST['email']); // Sanitize input
+            // Sanitize input
+            $email = htmlspecialchars($_POST['email']);
+            $full_name = htmlspecialchars($_POST['full_name']);
 
             // Check if the email already exists
             if ($user->emailExists($email)) {
@@ -26,7 +28,7 @@ class SignUp
                 // Store the data in the session instead of the database
                 $_SESSION['signup_data'] = [
                     'email' => $email,
-                    'full_name' => htmlspecialchars($_POST['full_name']),
+                    'full_name' => $full_name,
                     'token' => $token,
                     'active' => 0,
                     'password' => $hashedPassword,
@@ -38,6 +40,7 @@ class SignUp
                 } else {
                     // Redirect to activation page
                     header("Location: " . ROOT . "/activation");
+                    exit(); // Ensure no further code execution
                 }
             } else {
                 $data['errors'] = $user->errors;
@@ -48,4 +51,3 @@ class SignUp
         $this->views('signup', $data);
     }
 }
-
