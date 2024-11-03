@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require __DIR__ . "/" .   "../app/core/init.php";
 // echo __DIR__ . '/' . "../app/Core/";
@@ -11,6 +10,6 @@ $app->loadController();
 // show(var_dump($_SERVER));
 
 
-
+//localost url not for routing to register and signup
 
 
