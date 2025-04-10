@@ -10,6 +10,6 @@ $app->loadController();
 // show(var_dump($_SERVER));
 
 
-
+//localost url not for routing to register and signup
 
 

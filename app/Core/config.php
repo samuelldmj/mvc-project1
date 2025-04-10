@@ -1,33 +1,38 @@
 <?php
-
-
-
-
 // define('ROOT', "http//:localhost/mvc/public");
 
 //alternative that makes it easy production
 
+if ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === 'mvc-project1.test') {
 
-if ($_SERVER['SERVER_NAME'] === 'localhost') {
-
-    /**@database config */
+    /**@database config for local environment */
     define('DBNAME', 'my_db');
     define('DBHOST', 'localhost');
     define('DBUSER', 'root');
     define('DBPASS', '');
 
+    // Set the root URL for local environment
+    if ($_SERVER['SERVER_NAME'] === 'localhost') {
+        define('ROOT', "http://localhost/mvc-project1/public");
+    } else {
+        define('ROOT', "http://mvc-project1.test");
+    }
 
-    define('ROOT', "http://localhost/mvc-project1/public");
 } else {
 
+    /**@database config for production environment */
     define('DBNAME', 'my_db');
     define('DBHOST', 'localhost');
-    define('USER', 'root');
-    define('PASSWORD', '');
+    define('DBUSER', 'your_production_user');
+    define('DBPASS', 'your_production_password');
+
+    // Set the root URL for the production environment
     define('ROOT', "https://www.yourwebsite.com");
 }
 
 define('APP_NAME', "WEBSITE");
-define('APP_DESC', "For practise");
-//change to false in production
-define('DEBUG', true);
+define('APP_DESC', "For practice");
+
+// Set debug mode
+define('DEBUG', true);  // Change to false in production
+

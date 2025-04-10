@@ -10,7 +10,7 @@ class Home
 
 
 
-        $data['username'] = empty($_SESSION['USER']) ? 'Friend' : $_SESSION['USER']->names;
+        $data['username'] = empty($_SESSION['USER']) ? 'Friend' : $_SESSION['USER']->full_name;
         $data['title'] = 'Maravel - Home';
         
         $this->views('home', $data);

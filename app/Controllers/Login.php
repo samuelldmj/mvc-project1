@@ -21,7 +21,8 @@ class Login
                 // Handle "Remember Me" functionality
                 if (!empty($_POST['remember_me'])) {
                     $rememberToken = bin2hex(random_bytes(16));
-                    $user->update($row->id, ['token' => $rememberToken]);
+                    $hashedToken = password_hash($rememberToken, PASSWORD_DEFAULT);
+                    $user->update($row->id, ['remember_me_token' => $hashedToken]);
 
                     // Set a cookie that lasts for 30 days
                     setcookie('remember_me', $rememberToken, time() + (30 * 24 * 60 * 60), "/");

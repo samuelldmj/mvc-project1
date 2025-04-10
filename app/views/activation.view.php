@@ -98,26 +98,24 @@
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
-
-    <main class="form-signin w-100 m-auto">
-        <form method="post">
-
-            <?php if (!empty($errors)) : ?>
-                <div class="alert alert-danger">
-                    <?= implode("<br>", $errors); ?>
-                </div>
-            <?php endif; ?>
-
-            <h1 class="h3 mb-3 fw-normal">Activate Your Account</h1>
-
-            <div class="form-floating">
-                <input name="active" type="text" class="form-control" id="floatingInput" placeholder="Enter your activation code">
-                <label for="floatingInput">Activation code</label>
+<main class="form-signin w-100 m-auto">
+    <form method="post">
+        <?php if (!empty($errors)) : ?>
+            <div class="alert alert-danger">
+                <?= implode("<br>", $errors); ?>
             </div>
-            <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Activate</button>
-            <p class="mt-2 mb-3 text-body-secondary">Kindly check your e-mail, a code has been sent.</p>
-        </form>
-    </main>
+        <?php endif; ?>
+
+        <h1 class="h3 mb-3 fw-normal">Activate Your Account</h1>
+
+        <div class="form-floating">
+            <input name="activation_code" type="text" class="form-control" id="floatingInput" placeholder="Enter your activation code" required>
+            <label for="floatingInput">Activation code</label>
+        </div>
+        <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Activate</button>
+        <p class="mt-2 mb-3 text-body-secondary">Kindly check your e-mail, a code has been sent.</p>
+    </form>
+</main>
 
 </body>
 
